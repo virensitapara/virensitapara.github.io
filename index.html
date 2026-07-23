@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Viren Sitapara - Full Stack Developer. Building enterprise SaaS platforms with Laravel, Vue.js, and modern web technologies.">
+    <meta name="keywords" content="Full Stack Developer, Laravel, Vue.js, SaaS, Web Development">
+    <meta name="author" content="Viren Sitapara">
+    <title>Viren Sitapara - Full Stack Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --primary-light: #34495e;
+            --accent: #3498db;
+            --accent-hover: #2980b9;
+            --text-primary: #2c3e50;
+            --text-secondary: #555;
+            --text-muted: #888;
+            --border-color: #ecf0f1;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+                'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+                sans-serif;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            background-color: var(--white);
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 80px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .tagline {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            opacity: 0.95;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 0.95em;
+        }
+
+        .contact-links a {
+            color: var(--white);
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--white);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: var(--primary);
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: var(--bg-light);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            transform: translateY(-5px);
+        }
+
+        .project-title {
+            font-size: 1.3em;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .tech-tag {
+            background: #e8f4f8;
+            color: var(--accent);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            flex-grow: 1;
+            margin-bottom: 15px;
+        }
+
+        .project-description ul {
+            margin-left: 20px;
+            color: var(--text-secondary);
+        }
+
+        .project-description li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: var(--white);
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background: var(--bg-light);
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-item {
+            background: var(--white);
+            padding: 8px 14px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+
+        .skill-item:hover {
+            background: var(--accent);
+            color: var(--white);
+            border-color: var(--accent);
+        }
+
+        /* About Section */
+        .about {
+            background: var(--bg-light);
+        }
+
+        .about-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--primary);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: var(--white);
+            margin-bottom: 30px;
+        }
+
+        .contact h2::after {
+            background: var(--accent);
+        }
+
+        .contact-content {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .contact-item a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--white);
+            text-decoration: underline;
+        }
+
+        .contact-label {
+            display: block;
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 5px;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a252f;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+                margin-bottom: 30px;
+            }
+
+            section {
+                padding: 40px 0;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .project-card {
+            animation: slideInUp 0.6s ease-out forwards;
+        }
+
+        .project-card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .project-card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .project-card:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Viren Sitapara</h1>
+        <p class="tagline">Full Stack Developer | Enterprise SaaS Specialist</p>
+        <div class="contact-links">
+            <a href="mailto:virensitapara007@gmail.com">Email</a>
+            <a href="tel:+919998442834">+91 9998442834</a>
+            <a href="https://in.linkedin.com/in/virensitapara" target="_blank">LinkedIn</a>
+            <a href="https://github.com" target="_blank">GitHub</a>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <p>I'm a full-stack developer with <span class="highlight">4+ years</span> of experience building enterprise-grade SaaS platforms. I specialize in designing scalable architectures, implementing complex integrations, and delivering production-ready applications.</p>
+                <p style="margin-top: 15px;">My expertise spans the full development lifecycle—from API design and database architecture to real-time communication systems and cloud infrastructure. I'm passionate about solving complex problems and shipping products that users love.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects">
+        <div class="container">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <h3 class="project-title">Prowyser</h3>
+                    <p style="font-size: 0.9em; color: var(--text-muted); margin-bottom: 12px;">Enterprise Field-Service SaaS</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Laravel</span>
+                        <span class="tech-tag">Nuxt 3</span>
+                        <span class="tech-tag">Stripe</span>
+                        <span class="tech-tag">MySQL</span>
+                    </div>
+                    <div class="project-description">
+                        <p>B2B SaaS platform managing end-to-end quote-to-cash workflows for French trades businesses, including quoting, dispatch, billing, and subscriptions.</p>
+                        <ul>
+                            <li>Engineered enterprise-grade backend with restructured data models and internationalization support</li>
+                            <li>Implemented JWT authentication and Stripe-based payment workflows</li>
+                            <li>Built transactional notification pipelines using Firebase and SendGrid</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <h3 class="project-title">LivShows</h3>
+                    <p style="font-size: 0.9em; color: var(--text-muted); margin-bottom: 12px;">Web AR SaaS Platform</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Laravel</span>
+                        <span class="tech-tag">Vue.js</span>
+                        <span class="tech-tag">Three.js</span>
+                        <span class="tech-tag">WebGL</span>
+                    </div>
+                    <div class="project-description">
+                        <p>No-code Web AR SaaS enabling creators to design and monetize interactive 3D/AR browser experiences.</p>
+                        <ul>
+                            <li>Built browser-native AR builder with Three.js WebGL editing</li>
+                            <li>Implemented multi-format 3D asset ingestion (GLTF, OBJ, FBX)</li>
+                            <li>Architected scalable cloud storage workflows using AWS S3</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <h3 class="project-title">ConnectAfrobeats</h3>
+                    <p style="font-size: 0.9em; color: var(--text-muted); margin-bottom: 12px;">Networking & Marketplace Platform</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Laravel</span>
+                        <span class="tech-tag">Livewire</span>
+                        <span class="tech-tag">Pusher</span>
+                        <span class="tech-tag">Firebase</span>
+                    </div>
+                    <div class="project-description">
+                        <p>End-to-end full-stack platform with marketplace, admin operations, and XP ledger system.</p>
+                        <ul>
+                            <li>Developed MarketSquare gig marketplace with image processing</li>
+                            <li>Built admin suite with Excel import/export and analytics</li>
+                            <li>Implemented SEO automation with dynamic meta tags and sitemaps</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <h3 class="project-title">PrathamFabClub</h3>
+                    <p style="font-size: 0.9em; color: var(--text-muted); margin-bottom: 12px;">B2B Fabric Visualization SaaS</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Laravel 12</span>
+                        <span class="tech-tag">Livewire</span>
+                        <span class="tech-tag">Filament</span>
+                        <span class="tech-tag">Firebase FCM</span>
+                    </div>
+                    <div class="project-description">
+                        <p>B2B garment visualization platform enabling digital fabric draping for textile retailers.</p>
+                        <ul>
+                            <li>Developed layered garment visualization engine with z-index stacking</li>
+                            <li>Architected dual fabric library model for system and user-uploaded catalogs</li>
+                            <li>Integrated SMS authentication and push notifications</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Backend</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Laravel</span>
+                        <span class="skill-item">PHP</span>
+                        <span class="skill-item">RESTful APIs</span>
+                        <span class="skill-item">JWT Auth</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Frontend</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Vue.js 2/3</span>
+                        <span class="skill-item">Nuxt.js</span>
+                        <span class="skill-item">TypeScript</span>
+                        <span class="skill-item">Tailwind CSS</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Databases</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">MySQL</span>
+                        <span class="skill-item">Database Design</span>
+                        <span class="skill-item">Query Optimization</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Cloud & Tools</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">AWS S3</span>
+                        <span class="skill-item">Git</span>
+                        <span class="skill-item">Docker</span>
+                        <span class="skill-item">Postman</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Integrations</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Stripe</span>
+                        <span class="skill-item">Firebase</span>
+                        <span class="skill-item">Pusher</span>
+                        <span class="skill-item">SendGrid</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Frameworks & Libraries</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Livewire</span>
+                        <span class="skill-item">Filament</span>
+                        <span class="skill-item">Three.js</span>
+                        <span class="skill-item">WebGL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-item">
+                    <span class="contact-label">Email</span>
+                    <a href="mailto:virensitapara007@gmail.com">virensitapara007@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">Phone</span>
+                    <a href="tel:+919998442834">+91 9998442834</a>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">LinkedIn</span>
+                    <a href="https://in.linkedin.com/in/virensitapara" target="_blank">Connect with me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Viren Sitapara. All rights reserved. | <a href="https://github.com" target="_blank" style="color: var(--accent); text-decoration: none;">View on GitHub</a></p>
+    </footer>
+</body>
+</html>
