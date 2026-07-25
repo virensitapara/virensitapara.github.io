@@ -7,6 +7,7 @@
     <meta name="keywords" content="Full Stack Developer, Laravel, Vue.js, SaaS, Web Development">
     <meta name="author" content="Viren Sitapara">
     <title>Viren Sitapara - Full Stack Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -34,32 +35,105 @@
             line-height: 1.6;
             color: var(--text-secondary);
             background-color: var(--white);
+            scroll-behavior: smooth;
         }
 
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: var(--primary);
+            color: var(--white);
+            padding: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 0.95em;
+            transition: color 0.3s ease;
+            padding: 8px 0;
+            border-bottom: 2px solid transparent;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent);
+        }
+
+        .nav-menu a.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--white);
+            margin: 5px 0;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        /* Header */
         header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             color: var(--white);
-            padding: 80px 20px;
+            padding: 100px 20px 80px;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         header h1 {
-            font-size: 2.5em;
+            font-size: 2.8em;
             margin-bottom: 10px;
-            font-weight: 600;
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
 
         .tagline {
-            font-size: 1.1em;
-            margin-bottom: 20px;
+            font-size: 1.15em;
+            margin-bottom: 30px;
             opacity: 0.95;
+            font-weight: 300;
         }
 
         .contact-links {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
             font-size: 0.95em;
         }
@@ -67,15 +141,19 @@
         .contact-links a {
             color: var(--white);
             text-decoration: none;
-            padding: 8px 16px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 4px;
+            padding: 10px 18px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
             transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .contact-links a:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.15);
             border-color: var(--white);
+            transform: translateY(-2px);
         }
 
         .container {
@@ -85,16 +163,17 @@
         }
 
         section {
-            padding: 60px 0;
+            padding: 80px 0;
         }
 
         h2 {
-            font-size: 2em;
+            font-size: 2.2em;
             color: var(--primary);
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             text-align: center;
             position: relative;
-            padding-bottom: 15px;
+            padding-bottom: 20px;
+            font-weight: 700;
         }
 
         h2::after {
@@ -103,15 +182,34 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
+            width: 80px;
+            height: 4px;
             background: var(--accent);
             border-radius: 2px;
         }
 
+        /* About Section */
+        .about {
+            background: var(--bg-light);
+        }
+
+        .about-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 1.9;
+            color: var(--text-secondary);
+            font-size: 1.05em;
+        }
+
+        .highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
         /* Projects Section */
         .projects {
-            background: var(--bg-light);
+            background: var(--white);
         }
 
         .projects-grid {
@@ -122,39 +220,60 @@
 
         .project-card {
             background: var(--white);
-            border-radius: 8px;
-            padding: 25px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
+            border: 1px solid var(--border-color);
         }
 
         .project-card:hover {
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            border-color: var(--accent);
+        }
+
+        .project-icon {
+            width: 50px;
+            height: 50px;
+            background: #e8f4f8;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            color: var(--accent);
+            font-size: 1.5em;
         }
 
         .project-title {
-            font-size: 1.3em;
+            font-size: 1.4em;
             color: var(--primary);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-weight: 600;
+        }
+
+        .project-subtitle {
+            font-size: 0.9em;
+            color: var(--text-muted);
+            margin-bottom: 15px;
         }
 
         .project-tech {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
 
         .tech-tag {
             background: #e8f4f8;
             color: var(--accent);
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.85em;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
             font-weight: 500;
         }
 
@@ -162,6 +281,8 @@
             color: var(--text-secondary);
             flex-grow: 1;
             margin-bottom: 15px;
+            font-size: 0.95em;
+            line-height: 1.7;
         }
 
         .project-description ul {
@@ -176,26 +297,34 @@
 
         /* Skills Section */
         .skills {
-            background: var(--white);
+            background: var(--bg-light);
         }
 
         .skills-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            gap: 25px;
         }
 
         .skill-category {
-            background: var(--bg-light);
-            padding: 25px;
-            border-radius: 8px;
-            border-left: 4px solid var(--accent);
+            background: var(--white);
+            padding: 28px;
+            border-radius: 12px;
+            border-left: 5px solid var(--accent);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .skill-category:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
         }
 
         .skill-category h3 {
             color: var(--primary);
-            margin-bottom: 15px;
-            font-size: 1.1em;
+            margin-bottom: 18px;
+            font-size: 1.15em;
+            font-weight: 600;
         }
 
         .skill-items {
@@ -205,49 +334,33 @@
         }
 
         .skill-item {
-            background: var(--white);
+            background: var(--bg-light);
             padding: 8px 14px;
-            border-radius: 4px;
+            border-radius: 6px;
             font-size: 0.9em;
             color: var(--text-primary);
             border: 1px solid var(--border-color);
             transition: all 0.2s ease;
+            font-weight: 500;
         }
 
         .skill-item:hover {
             background: var(--accent);
             color: var(--white);
             border-color: var(--accent);
-        }
-
-        /* About Section */
-        .about {
-            background: var(--bg-light);
-        }
-
-        .about-content {
-            max-width: 700px;
-            margin: 0 auto;
-            text-align: center;
-            line-height: 1.8;
-            color: var(--text-secondary);
-        }
-
-        .highlight {
-            color: var(--accent);
-            font-weight: 600;
+            transform: scale(1.05);
         }
 
         /* Contact Section */
         .contact {
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             color: var(--white);
             text-align: center;
         }
 
         .contact h2 {
             color: var(--white);
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         .contact h2::after {
@@ -257,7 +370,7 @@
         .contact-content {
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 50px;
             flex-wrap: wrap;
             margin-bottom: 30px;
         }
@@ -267,15 +380,22 @@
             min-width: 200px;
         }
 
-        .contact-item a {
+        .contact-icon {
+            font-size: 2em;
+            margin-bottom: 12px;
             color: var(--accent);
+        }
+
+        .contact-item a {
+            color: var(--white);
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
+            font-size: 1.05em;
         }
 
         .contact-item a:hover {
-            color: var(--white);
+            color: var(--accent);
             text-decoration: underline;
         }
 
@@ -283,7 +403,10 @@
             display: block;
             font-size: 0.9em;
             color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
         }
 
         /* Footer */
@@ -291,23 +414,75 @@
             background: #1a252f;
             color: rgba(255, 255, 255, 0.7);
             text-align: center;
-            padding: 30px 20px;
+            padding: 40px 20px;
             font-size: 0.9em;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--primary);
+                flex-direction: column;
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            .nav-menu.active {
+                max-height: 400px;
+            }
+
+            .nav-menu a {
+                padding: 18px 20px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            header {
+                padding: 60px 20px 50px;
+            }
+
             header h1 {
                 font-size: 2em;
             }
 
+            .tagline {
+                font-size: 1em;
+            }
+
+            .contact-links {
+                gap: 10px;
+            }
+
+            .contact-links a {
+                padding: 8px 14px;
+                font-size: 0.9em;
+            }
+
             h2 {
-                font-size: 1.5em;
+                font-size: 1.8em;
                 margin-bottom: 30px;
             }
 
             section {
-                padding: 40px 0;
+                padding: 50px 0;
             }
 
             .projects-grid {
@@ -316,20 +491,19 @@
 
             .contact-content {
                 flex-direction: column;
-                gap: 20px;
+                gap: 30px;
             }
-        }
 
-        /* Smooth Scroll */
-        html {
-            scroll-behavior: smooth;
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Animations */
         @keyframes slideInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -341,94 +515,125 @@
             animation: slideInUp 0.6s ease-out forwards;
         }
 
-        .project-card:nth-child(2) {
-            animation-delay: 0.1s;
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+        .project-card:nth-child(3) { animation-delay: 0.3s; }
+        .project-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .skill-category {
+            animation: slideInUp 0.6s ease-out forwards;
         }
 
-        .project-card:nth-child(3) {
-            animation-delay: 0.2s;
-        }
-
-        .project-card:nth-child(4) {
-            animation-delay: 0.3s;
-        }
+        .skill-category:nth-child(1) { animation-delay: 0.1s; }
+        .skill-category:nth-child(2) { animation-delay: 0.2s; }
+        .skill-category:nth-child(3) { animation-delay: 0.3s; }
+        .skill-category:nth-child(4) { animation-delay: 0.4s; }
+        .skill-category:nth-child(5) { animation-delay: 0.5s; }
+        .skill-category:nth-child(6) { animation-delay: 0.6s; }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="logo">VS</a>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
     <!-- Header -->
-    <header>
+    <header id="home">
         <h1>Viren Sitapara</h1>
         <p class="tagline">Full Stack Developer | Enterprise SaaS Specialist</p>
         <div class="contact-links">
-            <a href="mailto:virensitapara007@gmail.com">Email</a>
-            <a href="tel:+919998442834">+91 9998442834</a>
-            <a href="https://in.linkedin.com/in/virensitapara" target="_blank">LinkedIn</a>
-            <a href="https://github.com" target="_blank">GitHub</a>
+            <a href="mailto:virensitapara007@gmail.com">
+                <i class="fas fa-envelope"></i> Email
+            </a>
+            <a href="https://in.linkedin.com/in/virensitapara" target="_blank">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
         </div>
     </header>
 
     <!-- About Section -->
-    <section class="about">
+    <section class="about" id="about">
         <div class="container">
             <h2>About Me</h2>
             <div class="about-content">
-                <p>I'm a full-stack developer with <span class="highlight">4+ years</span> of experience building enterprise-grade SaaS platforms. I specialize in designing scalable architectures, implementing complex integrations, and delivering production-ready applications.</p>
-                <p style="margin-top: 15px;">My expertise spans the full development lifecycle—from API design and database architecture to real-time communication systems and cloud infrastructure. I'm passionate about solving complex problems and shipping products that users love.</p>
+                <p>I'm a full-stack developer with <span class="highlight">4+ years</span> of experience building enterprise-grade SaaS platforms. I specialize in designing scalable architectures, implementing complex integrations, and delivering production-ready applications that solve real business problems.</p>
+                <p style="margin-top: 20px;">My expertise spans the full development lifecycle—from API design and database architecture to real-time communication systems and cloud infrastructure. I'm passionate about clean code, elegant solutions, and shipping products that users love.</p>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section class="projects">
+    <section class="projects" id="projects">
         <div class="container">
             <h2>Featured Projects</h2>
             <div class="projects-grid">
                 <!-- Project 1 -->
                 <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
                     <h3 class="project-title">Prowyser</h3>
-                    <p style="font-size: 0.9em; color: var(--text-muted); margin-bottom: 12px;">Enterprise Field-Service SaaS</p>
+                    <p class="project-subtitle">Enterprise Field-Service SaaS</p>
                     <div class="project-tech">
                         <span class="tech-tag">Laravel</span>
                         <span class="tech-tag">Nuxt 3</span>
                         <span class="tech-tag">Stripe</span>
-                        <span class="tech-tag">MySQL</span>
                     </div>
                     <div class="project-description">
-                        <p>B2B SaaS platform managing end-to-end quote-to-cash workflows for French trades businesses, including quoting, dispatch, billing, and subscriptions.</p>
+                        <p>B2B SaaS platform managing end-to-end quote-to-cash workflows for French trades businesses.</p>
                         <ul>
-                            <li>Engineered enterprise-grade backend with restructured data models and internationalization support</li>
-                            <li>Implemented JWT authentication and Stripe-based payment workflows</li>
-                            <li>Built transactional notification pipelines using Firebase and SendGrid</li>
+                            <li>Enterprise-grade backend with restructured data models and i18n support</li>
+                            <li>JWT authentication and Stripe-based payment workflows</li>
+                            <li>Transactional notification pipelines using Firebase and SendGrid</li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Project 2 -->
                 <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
                     <h3 class="project-title">LivShows</h3>
-                    <p style="font-size: 0.9em; color: var(--text-muted); margin-bottom: 12px;">Web AR SaaS Platform</p>
+                    <p class="project-subtitle">Web AR SaaS Platform</p>
                     <div class="project-tech">
-                        <span class="tech-tag">Laravel</span>
-                        <span class="tech-tag">Vue.js</span>
                         <span class="tech-tag">Three.js</span>
                         <span class="tech-tag">WebGL</span>
+                        <span class="tech-tag">AWS S3</span>
                     </div>
                     <div class="project-description">
-                        <p>No-code Web AR SaaS enabling creators to design and monetize interactive 3D/AR browser experiences.</p>
+                        <p>No-code Web AR SaaS enabling creators to design and monetize interactive 3D/AR experiences.</p>
                         <ul>
-                            <li>Built browser-native AR builder with Three.js WebGL editing</li>
-                            <li>Implemented multi-format 3D asset ingestion (GLTF, OBJ, FBX)</li>
-                            <li>Architected scalable cloud storage workflows using AWS S3</li>
+                            <li>Browser-native AR builder with Three.js WebGL editing</li>
+                            <li>Multi-format 3D asset ingestion (GLTF, OBJ, FBX)</li>
+                            <li>Scalable cloud storage workflows using AWS S3</li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Project 3 -->
                 <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
                     <h3 class="project-title">ConnectAfrobeats</h3>
-                    <p style="font-size: 0.9em; color: var(--text-muted); margin-bottom: 12px;">Networking & Marketplace Platform</p>
+                    <p class="project-subtitle">Networking & Marketplace</p>
                     <div class="project-tech">
-                        <span class="tech-tag">Laravel</span>
                         <span class="tech-tag">Livewire</span>
                         <span class="tech-tag">Pusher</span>
                         <span class="tech-tag">Firebase</span>
@@ -436,29 +641,30 @@
                     <div class="project-description">
                         <p>End-to-end full-stack platform with marketplace, admin operations, and XP ledger system.</p>
                         <ul>
-                            <li>Developed MarketSquare gig marketplace with image processing</li>
-                            <li>Built admin suite with Excel import/export and analytics</li>
-                            <li>Implemented SEO automation with dynamic meta tags and sitemaps</li>
+                            <li>MarketSquare gig marketplace with image processing</li>
+                            <li>Admin suite with Excel import/export and analytics</li>
+                            <li>SEO automation with dynamic meta tags and sitemaps</li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Project 4 -->
                 <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
                     <h3 class="project-title">PrathamFabClub</h3>
-                    <p style="font-size: 0.9em; color: var(--text-muted); margin-bottom: 12px;">B2B Fabric Visualization SaaS</p>
+                    <p class="project-subtitle">B2B Fabric Visualization</p>
                     <div class="project-tech">
-                        <span class="tech-tag">Laravel 12</span>
-                        <span class="tech-tag">Livewire</span>
                         <span class="tech-tag">Filament</span>
                         <span class="tech-tag">Firebase FCM</span>
                     </div>
                     <div class="project-description">
                         <p>B2B garment visualization platform enabling digital fabric draping for textile retailers.</p>
                         <ul>
-                            <li>Developed layered garment visualization engine with z-index stacking</li>
-                            <li>Architected dual fabric library model for system and user-uploaded catalogs</li>
-                            <li>Integrated SMS authentication and push notifications</li>
+                            <li>Layered garment visualization engine with z-index stacking</li>
+                            <li>Dual fabric library model for system and user catalogs</li>
+                            <li>SMS authentication and push notifications integration</li>
                         </ul>
                     </div>
                 </div>
@@ -467,12 +673,12 @@
     </section>
 
     <!-- Skills Section -->
-    <section class="skills">
+    <section class="skills" id="skills">
         <div class="container">
             <h2>Technical Skills</h2>
             <div class="skills-container">
                 <div class="skill-category">
-                    <h3>Backend</h3>
+                    <h3><i class="fas fa-server"></i> Backend</h3>
                     <div class="skill-items">
                         <span class="skill-item">Laravel</span>
                         <span class="skill-item">PHP</span>
@@ -482,7 +688,7 @@
                 </div>
 
                 <div class="skill-category">
-                    <h3>Frontend</h3>
+                    <h3><i class="fas fa-paint-brush"></i> Frontend</h3>
                     <div class="skill-items">
                         <span class="skill-item">Vue.js 2/3</span>
                         <span class="skill-item">Nuxt.js</span>
@@ -492,7 +698,7 @@
                 </div>
 
                 <div class="skill-category">
-                    <h3>Databases</h3>
+                    <h3><i class="fas fa-database"></i> Databases</h3>
                     <div class="skill-items">
                         <span class="skill-item">MySQL</span>
                         <span class="skill-item">Database Design</span>
@@ -501,7 +707,7 @@
                 </div>
 
                 <div class="skill-category">
-                    <h3>Cloud & Tools</h3>
+                    <h3><i class="fas fa-cloud"></i> Cloud & Tools</h3>
                     <div class="skill-items">
                         <span class="skill-item">AWS S3</span>
                         <span class="skill-item">Git</span>
@@ -511,7 +717,7 @@
                 </div>
 
                 <div class="skill-category">
-                    <h3>Integrations</h3>
+                    <h3><i class="fas fa-puzzle-piece"></i> Integrations</h3>
                     <div class="skill-items">
                         <span class="skill-item">Stripe</span>
                         <span class="skill-item">Firebase</span>
@@ -521,7 +727,7 @@
                 </div>
 
                 <div class="skill-category">
-                    <h3>Frameworks & Libraries</h3>
+                    <h3><i class="fas fa-tools"></i> Frameworks</h3>
                     <div class="skill-items">
                         <span class="skill-item">Livewire</span>
                         <span class="skill-item">Filament</span>
@@ -534,19 +740,21 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="contact">
+    <section class="contact" id="contact">
         <div class="container">
             <h2>Get In Touch</h2>
             <div class="contact-content">
                 <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
                     <span class="contact-label">Email</span>
                     <a href="mailto:virensitapara007@gmail.com">virensitapara007@gmail.com</a>
                 </div>
                 <div class="contact-item">
-                    <span class="contact-label">Phone</span>
-                    <a href="tel:+919998442834">+91 9998442834</a>
-                </div>
-                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
                     <span class="contact-label">LinkedIn</span>
                     <a href="https://in.linkedin.com/in/virensitapara" target="_blank">Connect with me</a>
                 </div>
@@ -556,7 +764,49 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Viren Sitapara. All rights reserved. | <a href="https://github.com" target="_blank" style="color: var(--accent); text-decoration: none;">View on GitHub</a></p>
+        <p>&copy; 2024 Viren Sitapara. All rights reserved.</p>
     </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                updateActiveLink(link);
+            });
+        });
+
+        function updateActiveLink(clickedLink) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            clickedLink.classList.add('active');
+        }
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section, header');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
