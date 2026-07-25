@@ -73,6 +73,10 @@
             align-items: center;
         }
 
+        .nav-menu li {
+            list-style: none;
+        }
+
         .nav-menu a {
             color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
@@ -96,15 +100,29 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
+            gap: 6px;
         }
 
         .hamburger span {
-            width: 25px;
+            width: 26px;
             height: 3px;
             background: var(--white);
-            margin: 5px 0;
             border-radius: 2px;
-            transition: 0.3s;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transform-origin: center;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
         }
 
         /* Header */
@@ -434,25 +452,48 @@
             }
 
             .nav-menu {
-                position: absolute;
+                position: fixed;
                 top: 70px;
                 left: 0;
                 width: 100%;
-                background: var(--primary);
+                background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
                 flex-direction: column;
                 gap: 0;
                 max-height: 0;
                 overflow: hidden;
-                transition: max-height 0.3s ease;
+                transition: max-height 0.4s ease;
+                z-index: 999;
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             }
 
             .nav-menu.active {
-                max-height: 400px;
+                max-height: 300px;
+            }
+
+            .nav-menu li {
+                width: 100%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             }
 
             .nav-menu a {
-                padding: 18px 20px;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                padding: 16px 20px;
+                border-bottom: none;
+                display: block;
+                font-size: 1em;
+                font-weight: 500;
+                transition: all 0.3s ease;
+            }
+
+            .nav-menu a:hover {
+                background: rgba(255, 255, 255, 0.1);
+                padding-left: 25px;
+            }
+
+            .nav-menu a.active {
+                background: rgba(52, 152, 219, 0.2);
+                border-left: 4px solid var(--accent);
+                border-bottom: none;
+                padding-left: 20px;
             }
 
             header {
@@ -774,11 +815,13 @@
 
         hamburger.addEventListener('click', () => {
             navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
         });
 
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
                 updateActiveLink(link);
             });
         });
